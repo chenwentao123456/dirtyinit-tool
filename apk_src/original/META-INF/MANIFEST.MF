@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+
+Name: AndroidManifest.xml
+SHA-256-Digest: 1zAXmn3pSyxSJsMCfK1oO25MlNfaLEhvZQ0QLQlvfwQ=
+
+Name: assets/dirtyinit
+SHA-256-Digest: S/EOADxTjpDEB/9AGT9wIEjgSONOT0x8LJ0Vi20QWnw=
+
+Name: assets/overlay_scratch.img
+SHA-256-Digest: SDxF64qTRkBuYUXTIWbiN+U/wyDFuClSxDBPLsEb0os=
+
+Name: assets/payload_500.bin
+SHA-256-Digest: mhGMMUQvvSHoZM5vsenltc/f8Hx6n71f1nJxHU6UHeY=
+
+Name: assets/payload_576.bin
+SHA-256-Digest: uhuglCallnxVg+F4zhwmRPN6Cxx2CsJ4K4x1UWUDVMs=
+
+Name: classes.dex
+SHA-256-Digest: AwotrwRNkbdIp2neyppwy4GZSQAutIleVDnzwoagnDo=
+
+Name: lib/arm64-v8a/libdfi_exploit.so
+SHA-256-Digest: ky4GUdZxgIvzx2KE1MaemUtXB7rr0HJWru9QKLHgHBU=
+
+Name: resources.arsc
+SHA-256-Digest: H6PLKRKFNI7BszyF5zF9mJRncH9HkcTlMC8tMS0eGMg=
+

@@ -1,0 +1,336 @@
+﻿DFI Init Relay Shell -- CVE-2026-43284
+Connected to init (PID 1, UID 0, u:r:init:s0)
+All commands execute as init via raw syscall relay.
+
+AVAILABLE COMMANDS (159 total):
+
+FILE OPERATIONS:
+  ls [-1ACFHLNRSUXZabcdfghiklmnopqrstuwx!] [--group-directories-first] [path...] 
+  cd <path>                        
+  cat <file> [> file]              
+  cp [-r] <src> <dst>              
+  mv <src> <dst>                   
+  rm [-rf] <path>                  
+  mkdir [-p] <path>                
+  rmdir <dir...>                   
+  chmod [-R] <mode> <path>         
+  chown [-R] <uid:gid> <path>      
+  stat <path>                      
+  touch <file...>                  
+  echo <text> [>|>> file]          
+  ln [-s] <target> <link>          
+  readlink <path>                  
+  realpath <path>                  
+  file <path>                      
+  du [-sh] <path>                  
+  df                               
+  truncate -s <size> <path>        
+  install [-m mode] <src> <dst>    
+  cmp <file1> <file2>              
+  tee <input> <output>             
+  rename <old> <new>               
+  mknod <path> <b|c|p> [major minor] 
+  mktemp [-d] [template]           
+  dd if=<in> of=<out> [bs=N] [count=N] 
+  sync                             
+
+TEXT PROCESSING:
+  head [-n N] <file>               
+  tail [-n N] <file>               
+  grep [-invcrlR] <pat> <file/dir...> 
+  wc [-lwc] <file...>              
+  sort [-rnu] <file>               
+  uniq [-cd] <file>                
+  cut -d <delim> -f <N> <file>     
+  tr <set1> <set2> <file>          
+  sed 's/pat/rep/[g]' <file>       
+  awk [-F sep] '{print $N}' <file> 
+  tac <file>                       
+  rev <file>                       
+  nl <file>                        
+  expand <file>                    
+  paste <file1> <file2>            
+  comm <file1> <file2>             
+  diff <file1> <file2>             
+  strings [-n N] <file>            
+  xxd <file>                       
+  hexdump [-C] [-s off] [-n len] <file> 
+  base64 [-d] <file>               
+  od [-A adfox] [-t adfoux] [-x] [-c] [-N count] <file> 
+  fold [-w width] <file>           
+
+SECURITY & ANALYSIS:
+  sha256sum <file...>              
+  sha1sum <file...>                
+  md5sum <file...>                 
+  cksum <file...>                  
+  readelf [-hSla] <file>           
+  lsof [-p] <pid>                  
+  syscall <pid>                    
+  maps <pid>                       
+  status <pid>                     
+  getfattr [-n name] <path>        
+  setfattr -n <name> -v <val> <path> 
+  inotifywait [-m] [-t secs] <path> 
+
+DIRECTORY/SEARCH:
+  find [path] [-name pat] [-type f|d] 
+  xargs <file> <cmd> [args...]     
+  dirname <path>                   
+  basename <path> [suffix]         
+  pwd                              
+
+PROCESS/SYSTEM:
+  ps [-eAT]                        
+  kill [-sig] <pid>                
+  killall [-sig] <name>            
+  pidof <name>                     
+  pgrep <pattern>                  
+  pkill [-fnovx] [-SIGNAL|-l SIGNAL] [PATTERN] [-G GID,] [-g PGRP,] [-P PPID,] [-s SID,] [-t TERM,] [-U UID,] [-u EUID,] 
+  id                               
+  whoami                           
+  uptime                           
+  free                             
+  uname [-a]                       
+  hostname                         
+  dmesg                            
+  date                             
+  sleep <seconds>                  
+  nproc                            
+  printenv                         
+  groups                           
+  logname                          
+  lsmod                            
+  vmstat                           
+  swaps                            
+  mountpoint <path>                
+  watch [-n secs] <cmd> [args...]  
+  nice [-n increment]              
+  renice [-n] <priority> [-p] <pid...> 
+  ionice [-c class] [-n level] [-p pid] 
+  taskset [-p] <mask> <pid>        
+  ulimit [-a] [-n|-u|-s|-...] [value] 
+  getcap [-p] <pid>                
+  tty                              
+
+SELINUX:
+  getenforce                       
+  setenforce <0|1>                 
+  chcon [-R] <context> <path>      
+  getcon                           
+
+NETWORK:
+  netstat                          
+  ss                               
+  ifconfig                         
+
+BLOCK DEVICES:
+  blockdev --getsize64|--getro <dev> 
+  losetup                          
+  lsblk                            
+  blkid [device]                   
+  lspci                            
+  lsusb                            
+
+FILESYSTEM MANAGEMENT:
+  mount [-afFrsvw] [-t TYPE] [-o OPTION,] [[DEVICE] DIR] 
+  umount [-f] [-l] <mountpoint>    
+  swapon [-p priority] <device>    
+  swapoff <device>                 
+  mkswap <device>                  
+  pivot_root <new_root> <put_old>  
+  chroot <newroot>                 
+  sysctl [-w] [-a] <key>[=value]   
+
+BOOT / PARTITION INFO:
+  fstab [-i|--mountinfo] [filter]  
+  slot (show current A/B boot slot) 
+  bootconfig [key]                 
+  kernelcmdline [key]              
+  dmsetup [name] (dm device listing) 
+  overlay setup|status|teardown [/system] 
+  verity (check dm-verity status)  
+  partitions [filter]              
+  gsi (GSI/DSU status)             
+  dm [list|status|table|info] [name] 
+
+KERNEL MODULES:
+  insmod <module.ko> [params...]   
+  rmmod [-f] <module>              
+  modinfo <module>                 
+
+DOMAIN EXEC ***EXPERIMENTAL***:
+  exec [-d domain|path] <binary> [args] (domain-transitioning exec) 
+  dexec [-d domain|path] <binary> [args] (domain-transitioning exec) 
+
+INIT-SPECIFIC / SYSTEM CONTROL:
+  getprop [-Z] [name]              
+  setprop <name> <value> (NOT SUPPORTED — see help) 
+  raw <syscall_nr> [x0..x5]        
+  reboot [-p|poweroff|soft]        
+  unshare [-m] [-u] [-i] [-n] [-p] [-U] 
+  nsenter -t <pid> [-m] [-u] [-i] [-n] [-p] 
+
+MISC:
+  yes [string]                     
+  true                             
+  false                            
+  seq [start [step]] end           
+  printf <format> [args...]        
+  test <expr>                      
+  [ <expr> ]                       
+  expr <val> <op> <val>            
+  factor <number...>               
+  cal [month] [year]               
+  env                              
+  which <cmd>                      
+  clear                            
+  time <cmd>                       
+  help [command]                   
+
+SHELL NOTES:
+  - All built-in commands execute as init (PID 1, u:r:init:s0)
+  - Pipes (|) supported: left side runs via relay, right side
+    runs locally (e.g. ls -la | grep foo, cat file | head -20)
+  - File redirects (>, >>) work with echo and cat
+  - Ctrl+C interrupts current operation, Ctrl+D exits
+  - Type 'help <command>' for usage of a specific command
+
+═══════════════════════════════════════════════════════════════
+  CROSS-DOMAIN EXECUTION (dexec)
+═══════════════════════════════════════════════════════════════
+
+dexec is the most powerful command in this shell. It lets you
+execute commands as ANY non-zygote SELinux domain reachable
+from init — tee, vold, installd, netd, vendor_modprobe, etc.
+
+HOW INIT EXECUTES BINARIES:
+  Init has ZERO execute_no_trans permissions. There is no way
+  to execute a binary or any other file type and stay in
+  u:r:init:s0. The only binaries init can run are those with
+  an *_exec file label, and running them forces an immediate
+  domain transition. /system/bin/vold is labeled vold_exec —
+  when init runs it, it forks, and its child becomes
+  u:r:vold:s0 instantly, with no ability to return to the
+  init domain.
+
+SYNTAX:
+  dexec -d <domain> <command> [args...]   Explicit domain
+  dexec --domain=<domain> <cmd> [args...]  Same, long form
+  dexec <binary> [args...]                 Auto from file label
+  /absolute/path [args...]                 Same as dexec <path>
+
+DOMAIN ARGUMENT (-d):
+  Short name:   -d installd        -> u:r:installd:s0
+  Short name:   -d tee             -> u:r:tee:s0
+  Full context: -d u:r:netd:s0     -> used as-is
+
+MODES:
+  EXPLICIT DOMAIN (-d flag):
+    Sets the domain directly. Everything after the domain is
+    the command to run in that domain's namespace.
+      dexec -d tee sh -c "ls /data/tee"
+      dexec -d installd sh /path/to/script.sh
+      dexec -d vendor_modprobe insmod /path/to/module.ko
+
+  AUTO DOMAIN (no -d flag):
+    The binary's SELinux file label determines the domain.
+    All Android binaries have *_exec labels, so init always
+    transitions into the binary's domain.
+      dexec /system/bin/installd sh -c "ls /data"
+        -> label=installd_exec -> domain=installd
+        -> sh -c "ls /data" runs as installd
+      dexec /vendor/bin/insmod /path/to/module.ko
+        -> label=vendor_modprobe_exec -> insmod runs as
+           vendor_modprobe with the module path as its arg
+      /system/bin/toybox id
+        -> auto-exec: domain=toolbox, toybox id runs
+
+HOW IT WORKS:
+  1. Reads the binary's SELinux label (or uses -d)
+  2. Writes context to /proc/self/attr/exec (setexeccon)
+  3. Forks via CLONE_VFORK — relay stays alive
+  4. Child calls execve — kernel applies the domain
+  5. Parent resumes — relay connection never breaks
+  6. Child runs up to 5 seconds, then SIGKILL
+
+OUTPUT:
+  Stdout/stderr of the exec'd process go to /dev/null.
+  This is kernel-enforced: SELinux replaces all inherited
+  file descriptors that the new domain can't use.
+  Output you CAN see: logcat messages from the binary
+  (most Android system binaries log via liblog, not stdout).
+  dexec starts a logcat listener automatically.
+  Built-in commands (ls, cat, ps) are NOT affected.
+
+LIMITATIONS:
+  - Init CANNOT execute in its own domain. Every exec forks
+    and transitions. There is no execute_no_trans.
+  - Stdout/stderr NOT captured. Only logcat output visible.
+  - Zygote-managed app domains NOT reachable.
+  - The binary must be a valid entrypoint for the target
+    domain, or execve returns EACCES.
+  - No environment variables (envp=NULL). Use full paths
+    or sh -c "PATH=/system/bin cmd" if needed.
+  - 5-second timeout. Long-running processes SIGKILLed.
+  - Bare names resolved from /system/bin, /vendor/bin,
+    /product/bin, /system_ext/bin, and /apex/*/bin.
+
+EXAMPLES:
+  dexec -d tee sh -c "ls /data/tee"        TEE domain shell
+  dexec -d installd sh -c "ls /data/app"   Browse as installd
+  dexec -d vold sh -c "mount"              Mounts from vold
+  dexec -d netd sh -c "iptables -L"        Firewall as netd
+  dexec /vendor/bin/insmod /path/module.ko  Load kernel module
+  /system/bin/toybox id                     Auto-exec via dexec
+
+═══════════════════════════════════════════════════════════════
+  OVERLAYFS (overlay)
+═══════════════════════════════════════════════════════════════
+
+Mount a persistent read-write OverlayFS on any read-only
+partition (/system, /vendor, /product, /system_ext, etc.)
+directly from init. Writes land on /data and persist across
+reboots — re-run 'overlay setup' after each boot to activate.
+
+SYNTAX:
+  overlay setup [partition]      Mount RW overlay (default: /system)
+  overlay status                 Show all active overlays
+  overlay teardown [partition]   Unmount overlay (default: /system)
+
+WHAT HAPPENS DURING SETUP:
+  1. Verify relay is running as init (UID 0)
+  2. Check target isn't already overlaid (prevents stacking)
+  3. Set SELinux fscreate to u:object_r:overlayfs_file:s0
+  4. Create /data/overlay/<part>/upper and /data/overlay/<part>/work
+  5. Restore default fscreate context
+  6. Check mount propagation state (shared vs private)
+  7. Make target MS_PRIVATE for safe overlay mount
+  8. Verify kernel has overlayfs + detect userxattr support
+  9. mount("overlay", target, "overlay", MS_NOATIME, options)
+  9b. Relabel overlay root to overlayfs_file (fixes unlabeled:s0)
+ 10. Restore MS_SHARED so all apps see the overlay
+
+GENERAL-PURPOSE MOUNT (mount):
+  mount [-rsvw] [-t TYPE] [-o OPTS] [DEVICE] DIR
+  mount --bind <source> <target>
+  mount --move <source> <target>
+  mount -o shared <path>        Set MS_SHARED propagation
+  mount -o private <path>       Set MS_PRIVATE propagation
+  mount -o remount,rw <path>    Remount with new flags
+
+EXAMPLES:
+  overlay setup                  Overlay /system (RW)
+  overlay setup /vendor          Overlay /vendor (RW)
+  overlay setup /system_ext      Overlay /system_ext (RW)
+  overlay status                 List all overlays with paths
+  overlay teardown /system       Remove /system overlay
+
+NOTES:
+  - Kernel 5.15+ adds userxattr automatically (detected at runtime)
+  - Kernel 4.x works but without userxattr
+  - Overlay detection checks fs type, not source name — detects
+    overlays from any tool (Magisk, adb remount, fs_mgr)
+  - If target has submounts, mount may succeed but submounts
+    will be shadowed. Check /proc/self/mountinfo before setup.
+  - DEFEX exempts PID 1 — mount() is never blocked for init

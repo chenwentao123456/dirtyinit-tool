@@ -1,0 +1,16 @@
+version: 2.12.0
+apkFileName: dirtyinit.apk
+usesFramework:
+  ids:
+  - 1
+sdkInfo:
+  minSdkVersion: 28
+  targetSdkVersion: 34
+packageInfo:
+  forcedPackageId: 0
+versionInfo:
+  versionCode: 100
+  versionName: 1.00
+doNotCompress:
+- arsc
+- so

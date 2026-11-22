@@ -1,0 +1,29 @@
+Signature-Version: 1.0
+Created-By: 1.0 (Android)
+SHA-256-Digest-Manifest: U9yy/GpOWZAQ1hzk3v7ZrxVcut9RqmaAt214vPaKydo=
+X-Android-APK-Signed: 2, 3
+
+Name: AndroidManifest.xml
+SHA-256-Digest: SVZL60ccYYOCwSvHzXvUEv1ACKRwFM4p52Fcn68oWac=
+
+Name: assets/dirtyinit
+SHA-256-Digest: 5X5omDEKxyBUeiFXLOk2cGDWCH8HgeVp/U/Tb+EfBiA=
+
+Name: assets/overlay_scratch.img
+SHA-256-Digest: j8tlNq3UlGGJ/ESbDuIkyiOmum3hvP/KfdoRHjGW4u8=
+
+Name: assets/payload_500.bin
+SHA-256-Digest: X0xLt4MyK9RJzrMa8TrbuZ5Qkq1nFxoUEPqQ36mSJK8=
+
+Name: assets/payload_576.bin
+SHA-256-Digest: 0KRLKex4ELTUAzRNsiD5GxxQgAP5cs0Z1XpkFQZdUF4=
+
+Name: classes.dex
+SHA-256-Digest: 3pTNAIwAhd2LRJ+tiemwFSDOuhw7RHlgbXOJzOL/75c=
+
+Name: lib/arm64-v8a/libdfi_exploit.so
+SHA-256-Digest: VDPlBbxc787SGwbPjFpBmqIVwmNKGI34zxsFH33xixE=
+
+Name: resources.arsc
+SHA-256-Digest: WI7ra9otg9dpCR3VQ1+hGvOUf/iB0oxzAf1HWkM8CU4=
+
